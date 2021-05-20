@@ -1,4 +1,4 @@
-from api import Resource, reqparse, db
+from api import Resource, reqparse, db, auth
 from api.models.author import AuthorModel
 from api.models.quote import QuoteModel
 from api.schemas.quote import quote_schema, quotes_schema
@@ -25,6 +25,7 @@ class QuoteResource(Resource):
             return quote.to_dict(), 200
         return {"Error": "Quote not found"}, 404
 
+    @auth.login_required(role='admin')
     def post(self, author_id):
         parser = reqparse.RequestParser()
         parser.add_argument("quote", required=True)

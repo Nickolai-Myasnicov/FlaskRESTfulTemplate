@@ -8,3 +8,4 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     DEBUG = True
     PORT = 5000
+    SECRET_KEY = "qwerty"
